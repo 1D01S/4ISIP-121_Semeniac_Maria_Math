@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows;
 
-namespace _4ISIP_121_Semeniac_Maria_Math
+namespace TransportProblemSolver
 {
     public partial class MainWindow : Window
     {
@@ -57,7 +57,7 @@ namespace _4ISIP_121_Semeniac_Maria_Math
         // Парсинг матрицы стоимости
         private int[,] ParseCostMatrix()
         {
-            string[] rows = CostMatrixTextBox.Text.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] rows = CostMatrixTextBox.Text.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
             int rowCount = rows.Length;
             int colCount = rows[0].Split(' ').Length;
 
@@ -105,20 +105,13 @@ namespace _4ISIP_121_Semeniac_Maria_Math
             int i = 0, j = 0;
             while (i < m && j < n)
             {
-                if (supply[i] < demand[j])
-                {
-                    result[i, j] = supply[i];
-                    demand[j] -= supply[i];
-                    supply[i] = 0;
-                    i++;
-                }
-                else
-                {
-                    result[i, j] = demand[j];
-                    supply[i] -= demand[j];
-                    demand[j] = 0;
-                    j++;
-                }
+                int quantity = Math.Min(supply[i], demand[j]);
+                result[i, j] = quantity;
+                supply[i] -= quantity;
+                demand[j] -= quantity;
+
+                if (supply[i] == 0) i++;
+                if (demand[j] == 0) j++;
             }
 
             return result;
@@ -152,7 +145,11 @@ namespace _4ISIP_121_Semeniac_Maria_Math
                 result[minI, minJ] = quantity;
                 supply[minI] -= quantity;
                 demand[minJ] -= quantity;
-                used[minI, minJ] = true;
+
+                if (supply[minI] == 0 || demand[minJ] == 0)
+                {
+                    used[minI, minJ] = true;
+                }
             }
 
             return result;

@@ -1,10 +1,10 @@
 ﻿<Window x:Class="TransportProblemSolver.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Решение Транспортной Задачи" Height="623" Width="900"
+        Title="Решение Транспортной Задачи" Height="575" Width="900"
         Background="#290904">
     <!-- Тёмно-красный фон приложения -->
-    <Grid Margin="0,0,0,-100">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -35,15 +35,15 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                 <Button Content="Метод северо-западного угла" Click="SolveNorthwestCorner_Click" 
                         Margin="5" Background="#DD2C58" Foreground="White" FontWeight="Bold" Width="220" 
-                        BorderBrush="#65000B" BorderThickness="2"/>
+                        BorderBrush="#9F1437" BorderThickness="2"/>
                 <Button Content="Метод минимальной стоимости" Click="SolveMinimumCost_Click" 
                         Margin="5" Background="#DD2C58" Foreground="White" FontWeight="Bold" Width="220"
-                        BorderBrush="#65000B" BorderThickness="2"/>
+                        BorderBrush="#9F1437" BorderThickness="2"/>
             </StackPanel>
         </StackPanel>
 
         <!-- Поле результатов -->
-        <TextBox x:Name="ResultTextBox" Grid.Row="1" Margin="10,10,10,113" AcceptsReturn="True" 
+        <TextBox x:Name="ResultTextBox" Grid.Row="1" Margin="10" AcceptsReturn="True" 
                  Background="#65000B" Foreground="#FFFFFF" FontWeight="Bold" FontSize="14"
                  VerticalScrollBarVisibility="Auto" BorderBrush="#9F1437" BorderThickness="2"/>
     </Grid>
